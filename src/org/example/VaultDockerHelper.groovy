@@ -32,3 +32,4 @@ class VaultDockerHelper implements Serializable {
         script.sh "docker run -itd --name $containerName -p $hostPort:$containerPort $imageName"
     }
 }
+*/
