@@ -1,4 +1,4 @@
-package org.example
+/*package org.example
 
 class DockerOperations implements Serializable {
     def script
@@ -21,3 +21,4 @@ class DockerOperations implements Serializable {
         """
     }
 }
+*?
