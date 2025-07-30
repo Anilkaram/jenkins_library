@@ -29,13 +29,6 @@
     }
 }
 */
-/**
- * Fetch secrets from HashiCorp Vault and inject them as environment variables.
- *
- * @param vaultPath      Path in Vault to fetch secrets from (e.g., 'docker')
- * @param secretMapping  List of [envVar, vaultKey] pairs
- * @param config         Map of Vault plugin config options (optional, uses sensible defaults)
- */
 def call(String vaultPath, List secretMapping, Map config = [:], Closure body) {
     def vaultConfig = [
         disableChildPoliciesOverride: false,
@@ -48,9 +41,7 @@ def call(String vaultPath, List secretMapping, Map config = [:], Closure body) {
 
     def vaultSecrets = [[
         path: vaultPath,
-        secretValues: secretMapping.collect { pair ->
-            [envVar: pair.envVar, vaultKey: pair.vaultKey]
-        }
+        secretValues: secretMapping
     ]]
 
     withVault(
