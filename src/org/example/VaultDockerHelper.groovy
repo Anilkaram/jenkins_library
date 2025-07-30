@@ -1,4 +1,4 @@
-package org.example
+/*package org.example
 
 class VaultDockerHelper implements Serializable {
     def script
