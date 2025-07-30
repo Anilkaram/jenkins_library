@@ -7,15 +7,7 @@ class VaultOperations implements Serializable {
         this.script = script
     }
     
-    /**
-     * Retrieve secrets from Vault and set as environment variables
-     * @param config Configuration map with:
-     *   - vaultUrl: Vault server URL (default: 'http://127.0.0.1:8200')
-     *   - credentialId: Jenkins credential ID for Vault (default: 'vault_token')
-     *   - secretPath: Path to secret in Vault (default: 'docker')
-     *   - secretMappings: List of [envVar: '', vaultKey: ''] mappings
-     * @return Map of retrieved secrets
-     */
+  
     def getSecrets(Map config = [:]) {
         def defaultConfig = [
             vaultUrl: 'http://127.0.0.1:8200',
