@@ -12,13 +12,13 @@ class DockerOperations implements Serializable {
      * @param credentials Map containing username and password
      */
     def dockerLogin(Map credentials) {
-        // Using direct credentials from Vault without Jenkins credential store
-        script.sh """
-            docker login -u ${credentials.username} -p ${credentials.password}
-        """
-        
-        // Mask credentials in console output
-        script.mask passwords: [credentials.password], var: 'DOCKER_PASS'
+        // Store password in a temporary variable that Jenkins can mask
+        script.withEnv(["DOCKER_PASS=${credentials.password}"]) {
+            // The password will be automatically masked in logs
+            script.sh """
+                docker login -u ${credentials.username} -p ${script.env.DOCKER_PASS}
+            """
+        }
     }
     
     /**
@@ -66,4 +66,13 @@ class DockerOperations implements Serializable {
     /**
      * Convenience method for the specific use case
      */
+    def runBloodBankContainer() {
+        runContainer(
+            imageName: 'anildoc143/blood_bank:app_image',
+            containerName: 'bb',
+            hostPort: 9000,
+            containerPort: 80,
+            detach: true
+        )
+    }
 }
