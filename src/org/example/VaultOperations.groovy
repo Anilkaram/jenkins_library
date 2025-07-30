@@ -1,4 +1,4 @@
-package org.example
+/*package org.example
 
 class VaultOperations implements Serializable {
     def script
@@ -47,7 +47,7 @@ class VaultOperations implements Serializable {
     /**
      * Specifically get Docker credentials from Vault
      * @return Map with username and password
-     */
+     
     def getDockerCredentials() {
         return getSecrets(secretPath: 'docker', secretMappings: [
             [envVar: 'DOCKER_USER', vaultKey: 'username'],
@@ -55,3 +55,4 @@ class VaultOperations implements Serializable {
         ])
     }
 }
+*/
