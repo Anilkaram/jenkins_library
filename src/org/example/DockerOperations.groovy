@@ -8,21 +8,17 @@ class DockerOperations implements Serializable {
     }
     
     /**
-     * Login to Docker Hub using credentials
+     * Login to Docker Hub using credentials from Vault
      * @param credentials Map containing username and password
      */
     def dockerLogin(Map credentials) {
-        script.withCredentials([
-            script.usernamePassword(
-                credentialsId: 'temp-docker-creds',
-                usernameVariable: 'DOCKER_USER',
-                passwordVariable: 'DOCKER_PASS',
-                username: credentials.username,
-                password: credentials.password
-            )
-        ]) {
-            script.sh "docker login -u $script.env.DOCKER_USER -p $script.env.DOCKER_PASS"
-        }
+        // Using direct credentials from Vault without Jenkins credential store
+        script.sh """
+            docker login -u ${credentials.username} -p ${credentials.password}
+        """
+        
+        // Mask credentials in console output
+        script.mask passwords: [credentials.password], var: 'DOCKER_PASS'
     }
     
     /**
@@ -66,4 +62,8 @@ class DockerOperations implements Serializable {
         
         script.sh cmd.join(' ')
     }
+    
+    /**
+     * Convenience method for the specific use case
+     */
 }
