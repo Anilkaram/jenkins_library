@@ -26,4 +26,3 @@ jenkins-shared-library/
 ├── resources/            # Non-Groovy files
 │   └── scripts/          # Shell scripts, etc.
 └── README.md
-
