@@ -4,7 +4,7 @@ def call(Map params = [:]) {
     def defaults = [
         appRepoUrl: 'https://github.com/Anilkaram/travel_ease.git',
         appRepoBranch: 'main',
-        valuesFilePath: 'app/values.yaml',
+        valuesFilePath: 'values.yaml',
         chartPath: 'app/',
         frontendImage: env.FRONTEND_IMAGE,
         frontendTag: env.FRONTEND_TAG,
