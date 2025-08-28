@@ -2,7 +2,7 @@
 
 def call(Map params = [:]) {
     def defaults = [
-        appRepoUrl: '',
+        appRepoUrl: 'https://anilkaram.github.io/helm_repo_travel/',
         appRepoBranch: 'main',
         valuesFilePath: 'app/values.yaml',
         chartPath: 'app/',
